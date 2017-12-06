@@ -25,4 +25,6 @@ defineTest(copyToDestdir) {
 copyToDestdir($$PWD/pdftotext)
 
 HEADERS += \
-    paper.h
+    paper.h \
+    stringrelative.h \
+    txt.h
