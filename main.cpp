@@ -1,5 +1,3 @@
-#include <fstream>
-#include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -90,8 +88,8 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
                 }
             }
 
-            if (newPaper.lineAbstract == -1) {
-                if (nextLine) cout << "nextline" << endl;
+            if (newPaper.abstract == "") {
+                //if (nextLine) cout << "nextline" << endl;
                 findAbstrct(newPaper, lineIndex, line, nextLine);
 
             }
@@ -120,8 +118,8 @@ void findAbstrct(struct paper &newPaper, int lineIndex, string line, bool &nextL
 
     if (simpleLine == "abstract" ) { // content is in the next line
         newPaper.lineAbstract = lineIndex;
-        cout << lineIndex << endl;
-        cout << newPaper.abstract.size() << endl;
+        //cout << lineIndex << endl;
+        //cout << newPaper.abstract.size() << endl;
         nextLine = true;
 
     } else if (nextLine) { // with bug
@@ -129,7 +127,7 @@ void findAbstrct(struct paper &newPaper, int lineIndex, string line, bool &nextL
         //newPaper.lineAbstract != -1 &&
         //newPaper.abstract.size() == 0
         newPaper.abstract = noSpaceLine;
-        cout << "abstract1: " << newPaper.abstract << endl;
+        //cout << "abstract1: " << newPaper.abstract << endl;
         nextLine = false;
 
     } else if (simpleLine.substr(0, 8) == "abstract" &&
