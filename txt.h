@@ -15,9 +15,37 @@
 using namespace std;
 
 //prototypes
+vector<string> traversePDF();
 void PDFtoTxt(string pdf);
 vector<vector<string> > *readStrings(vector<string> txtList);
 vector<vector<string>>* clean(vector<vector<string>>* data);
+
+
+vector<string> traversePDF() { // find all PDF and convert
+    vector<string> txtList; // storage the name of all pdf
+    struct dirent *ptr;
+    DIR *dir;
+    dir = opendir("./");
+    while((ptr=readdir(dir)) != NULL) {
+        // Skip"." and ".."
+        if(ptr->d_name[0] == '.') {
+            continue;
+        }
+
+        string filename = ptr->d_name;
+
+        string lowerFilename = toLower(filename); // lowercase
+        if (lowerFilename.substr(lowerFilename.size() - 4) == ".pdf") {
+            //PDFtoTxt(filename); // comment for quick debugging other function
+            txtList.push_back(filename.substr(0, filename.size() - 4) + ".txt");
+            continue;
+        }
+    }
+    closedir(dir);
+    return txtList;
+    // TODO: 判断txt是否存在，是则不convert
+}
+
 
 void PDFtoTxt(string pdf) { // convert PDF to txt witl the same name using pdftotxt
     string command = "./pdftotext -nodiag " + pdf;

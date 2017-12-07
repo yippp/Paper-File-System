@@ -13,9 +13,8 @@
 using namespace std;
 
 //prototypes
-vector<string> traversePDF();
 vector<struct paper>* findInfo(vector<vector<string>>* data);
-bool findDOI(string line, string &doi);
+void findDOI(string line, string &doi);
 void findAbstrct(struct paper &newPaper, int lineIndex, string line, bool &nextLine);
 
 
@@ -29,37 +28,8 @@ int main() {
 }
 
 
-vector<string> traversePDF() { // find all PDF and convert
-    vector<string> txtList; // storage the name of all pdf
-    struct dirent *ptr;
-    DIR *dir;
-    dir = opendir("./");
-    while((ptr=readdir(dir)) != NULL) {
-        // Skip"." and ".."
-        if(ptr->d_name[0] == '.') {
-            continue;
-        }
-
-        string filename = ptr->d_name;
-
-        string lowerFilename = toLower(filename); // lowercase
-        if (lowerFilename.substr(lowerFilename.size() - 4) == ".pdf") {
-            //PDFtoTxt(filename);
-            txtList.push_back(filename.substr(0, filename.size() - 4) + ".txt");
-            continue;
-        }
-    }
-    closedir(dir);
-    return txtList;
-    // TODO: 判断txt是否存在，是则不convert
-}
-
-
-
-
 vector<struct paper>* findInfo(vector<vector<string>>* data) {
     vector<struct paper> *papersList = new vector<struct paper>;
-    bool DOIfound;
     bool nextLine = false;
 
     for (vector<string> txt : *data) {
@@ -78,19 +48,28 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
             //cout << "title: " << newPaper.title << endl;
         }
 
-        DOIfound = false;
         for (int lineIndex = 0; lineIndex < (int)txt.size(); lineIndex++) { // search each line
             string line = txt.at(lineIndex); // the current line
-            if (!DOIfound) {
-                DOIfound = findDOI(line, newPaper.DOI);
-                if (DOIfound) {
-                    //cout << "DOI: " << newPaper.DOI << endl;
-                }
+
+            if (newPaper.DOI == "") {
+                findDOI(line, newPaper.DOI);
+                //if (newPaper.DOI != "") cout << "DOI: " << newPaper.DOI << endl;
+            }
+
+            if (newPaper.title == "" && removeSymbol(line) != "" && lineIndex > 0) {
+                // find title
+                newPaper.lineTitle = lineIndex;
+                newPaper.title = removeSpace(line);
+                //cout << lineIndex << " title: " << newPaper.title << endl;
             }
 
             if (newPaper.abstract == "") {
                 //if (nextLine) cout << "nextline" << endl;
                 findAbstrct(newPaper, lineIndex, line, nextLine);
+            }
+
+            if (newPaper.authors.size() == 0 && lineIndex <= newPaper.lineAbstract + 1)  {
+                // find authors
 
             }
         }
@@ -100,15 +79,13 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
 }
 
 
-bool findDOI(string line, string &doi) {
+void findDOI(string line, string &doi) {
     string pattern("10\\.[^\\s\\/]+\\/[^\\s]+"); // regix of DOI
     regex r(pattern);
     smatch results;
     if(regex_search(line, results, r)) {
         doi = results.str();
-        return true;
     }
-    return false;
 }
 
 
@@ -123,9 +100,6 @@ void findAbstrct(struct paper &newPaper, int lineIndex, string line, bool &nextL
         nextLine = true;
 
     } else if (nextLine) { // with bug
-        //newPaper.lineAbstract == lineIndex - 1 &&
-        //newPaper.lineAbstract != -1 &&
-        //newPaper.abstract.size() == 0
         newPaper.abstract = noSpaceLine;
         //cout << "abstract1: " << newPaper.abstract << endl;
         nextLine = false;

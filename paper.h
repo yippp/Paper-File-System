@@ -14,7 +14,7 @@ struct paper{
     int year;
     vector<string> keywords;
     vector<string> authors;
-    vector<string> references;
+    //vector<string> references;
 
     // store which line they are in
     int lineAbstract = -1;
@@ -24,4 +24,5 @@ struct paper{
 
 };
 
+vector<paper *> list;
 #endif // PAPER_H
