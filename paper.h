@@ -12,7 +12,8 @@ struct paper{
     string DOI;
     string conference;
     int year;
-    vector<string> keywords;
+    string keywords;
+    //string authors;
     vector<string> authors;
     //vector<string> references;
 
@@ -24,5 +25,15 @@ struct paper{
 
 };
 
-vector<paper *> list;
+// // for test
+//void forTest() {
+//    vector<paper *> list;
+//    paper test1 = new paper;
+//    paper test2 = new paper;
+//    list.push_back(test1);
+//    list.push_back(test2);
+//    test1.title = "test1";
+//    test2.title = "test2";
+//}
+
 #endif // PAPER_H

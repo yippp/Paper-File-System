@@ -23,6 +23,8 @@ defineTest(copyToDestdir) {
 }
 
 copyToDestdir($$PWD/pdftotext)
+copyToDestdir($$PWD/stanford-ner.jar)
+copyToDestdir($$PWD/class.crf.ser.gz)
 
 HEADERS += \
     paper.h \

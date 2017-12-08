@@ -11,6 +11,9 @@ using namespace std;
 //prototypes
 bool isNum(string str);
 string removeSpace(string str);
+string removeSymbol(string str);
+string toLower(string str);
+vector<string> split(const string& str, const string& delimiter);
 
 bool isNum(string str) {
     for (int i = 0; i < (int)str.size(); i++) {
@@ -44,6 +47,28 @@ string removeSymbol(string str) { // remove symbol, number and space
 string toLower(string str) {
     transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
+}
+
+vector<string> split(const string& str, const string& delimiter) {
+    // split the string according to the delimiter and storage in vector words
+    vector<string> words;
+    if(str == "") {
+        return words;
+    }
+
+    char *strs = new char[str.length() + 1];
+    strcpy(strs, str.c_str());
+
+    char *d = new char[delimiter.length() + 1];
+    strcpy(d, delimiter.c_str());
+
+    char *p = strtok(strs, d);
+    while(p) {
+        words.push_back((string)p);
+        p = strtok(NULL, d);
+    }
+
+    return words;
 }
 
 #endif // STRINGRELATIVE_H
