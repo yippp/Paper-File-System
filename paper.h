@@ -20,7 +20,7 @@ struct paper{
     // store which line they are in
     int lineAbstract = -1;
     int lineTitle = -1;
-    int lineReferences = -1;
+    //int lineReferences = -1;
 
 
 };
