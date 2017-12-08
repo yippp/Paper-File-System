@@ -16,8 +16,8 @@ using namespace std;
 
 //prototypes
 vector<string> traversePDF();
-void PDFtoTxt(string pdf);
-vector<vector<string> > *readStrings(vector<string> txtList);
+void PDFtoTxt(const string pdf);
+vector<vector<string> > *readStrings(const vector<string> txtList);
 vector<vector<string>>* clean(vector<vector<string>>* data);
 
 
@@ -47,13 +47,13 @@ vector<string> traversePDF() { // find all PDF and convert
 }
 
 
-void PDFtoTxt(string pdf) { // convert PDF to txt witl the same name using pdftotxt
+void PDFtoTxt(string const pdf) { // convert PDF to txt witl the same name using pdftotxt
     string command = "./pdftotext -nodiag " + pdf;
     system(command.data());
 }
 
 
-vector<vector<string>>* readStrings(vector<string> txtList) { // read the strings from txt into the program
+vector<vector<string>>* readStrings(vector<string> const txtList) { // read the strings from txt into the program
     vector<vector<string>> *data = new vector<vector<string>>;
     string line;
     ifstream infile;

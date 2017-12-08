@@ -9,13 +9,13 @@ using namespace std;
 
 
 //prototypes
-bool isNum(string str);
+bool isNum(const string str);
 string removeSpace(string str);
 string removeSymbol(string str);
 string toLower(string str);
 vector<string> split(const string& str, const string& delimiter);
 
-bool isNum(string str) {
+bool isNum(string const str) {
     for (int i = 0; i < (int)str.size(); i++) {
         int tmp = (int)str[i];
         if (tmp >= 48 && tmp <= 57) {

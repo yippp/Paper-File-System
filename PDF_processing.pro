@@ -29,4 +29,5 @@ copyToDestdir($$PWD/class.crf.ser.gz)
 HEADERS += \
     paper.h \
     stringrelative.h \
-    txt.h
+    txt.h \
+    findinfo.h
