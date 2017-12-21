@@ -14,8 +14,8 @@ struct paper{
     int year;
     string keywords;
     string tag;
-    //string authors;
-    vector<string> authors;
+    string authors;
+    //vector<string> authors;
     //vector<string> references;
 
     // store which line they are in

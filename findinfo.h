@@ -79,7 +79,7 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
                 // find authors between title and abstract
                 stringFindAuthor.push_back(txt.at(lineIndex));
             }
-            //findAuthor(stringFindAuthor, newPaper); // which is slow
+            findAuthor(stringFindAuthor, newPaper); // which is slow
         }
 
         papersList->push_back(newPaper);
@@ -135,25 +135,39 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
     infile.close();
 
     vector<string> words;
-    newPaper.authors.push_back("");
+    //newPaper.authors.push_back("");
+    bool addComma = true;
     for (string line : nerData) {
         words = split(line, " ");
         for (string word : words) {
             if (word.size() > 7) {
                 if (word.substr(word.size() - 7) == "/PERSON") {
-                    if (newPaper.authors.back() == "") {
-                        newPaper.authors.back() = removeSymbol(word.substr(0, word.size() - 7));
+                    if (newPaper.authors == "") {
+                        newPaper.authors = removeSymbol(word.substr(0, word.size() - 7));
+                        addComma = true;
                     } else {
-                        newPaper.authors.back() += " " + removeSymbol(word.substr(0, word.size() - 7));
-                        cout << "author: " << newPaper.authors.back() << endl;
-                        newPaper.authors.push_back("");
+                        newPaper.authors += " " + removeSymbol(word.substr(0, word.size() - 7));
+                        if (addComma) {
+                            newPaper.authors += ", ";
+                            addComma = false;
+                        } else {
+                            addComma = true;
+                        }
+                        //cout << "author: " << newPaper.authors.back() << endl;
+                        //newPaper.authors.push_back("");
                     }
                 }
             }
-            if (newPaper.authors.back().find(" ") != string::npos) {
-                cout << "author: " << newPaper.authors.back() << endl;
-                newPaper.authors.push_back("");
-            }
+//            if (newPaper.authors.back().find(" ") != string::npos) {
+//                //cout << "author: " << newPaper.authors.back() << endl;
+//                newPaper.authors.push_back("");
+//            }
+        }
+    }
+    newPaper.authors = removeSpace(newPaper.authors);
+    if (newPaper.authors.size() > 2) {
+        if (newPaper.authors.at(newPaper.authors.size() - 1) == ',') {
+            newPaper.authors = newPaper.authors.substr(0, newPaper.authors.size() - 2);
         }
     }
 }

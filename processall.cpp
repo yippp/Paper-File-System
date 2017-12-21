@@ -21,13 +21,13 @@ vector<paper>* process_all() {
 }
 
 void saveToFile(vector<paper>* papersList, vector<string> txtList) {
-    int i = 0;
-    for (string txt : txtList) {
-        fstream binary_file("../../../"+ txt + ".dat",ios::out|ios::binary|ios::app);
-        binary_file.write(reinterpret_cast<char *>(papersList->at(i)), sizeof(papersList->at(i)));
-        binary_file.close();
-        i++;
-    }
+//    int i = 0;
+//    for (string txt : txtList) {
+//        fstream binary_file("../../../"+ txt + ".dat",ios::out|ios::binary|ios::app);
+//        binary_file.write(reinterpret_cast<char *>(papersList->at(i)), sizeof(papersList->at(i)));
+//        binary_file.close();
+//        i++;
+//    }
 
 }
 

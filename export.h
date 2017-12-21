@@ -7,6 +7,7 @@
 
 #include "paper.h"
 using namespace std;
+
 void exportBibTeX(vector<paper>* paperList) {
     ofstream txt;
     txt.open("../../../BibTeX.txt");
@@ -16,15 +17,16 @@ void exportBibTeX(vector<paper>* paperList) {
         current = paperList->at(i);
         txt << "@inproceedings{" << i << "," << endl;
 
-        txt << "author={";
-        authors = "";
-        for (int j = 0; j < current.authors.size(); j++) {
-            if (j > 0 && j != current.authors.size() - 1) {
-                authors += " and ";
-            }
-            authors += current.authors.at(j);
-        }
-        txt << authors << "}," << endl;
+//        txt << "author={";
+//        authors = "";
+//        for (int j = 0; j < current.authors.size(); j++) {
+//            if (j > 0 && j != current.authors.size() - 1) {
+//                authors += " and ";
+//            }
+//            authors += current.authors.at(j);
+//        }
+//        txt << authors << "}," << endl;
+        txt << "authors={" << current.authors << "}," << endl;
 
         txt << "booktitle={" << current.conference << "}," << endl;
 
