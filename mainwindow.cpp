@@ -13,7 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {    
     ui->setupUi(this);
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemClick(QListWidgetItem*)));
-
+    connect(ui->titleText, SIGNAL(textChanged()), SLOT(writeBackTitle()));
+    connect(ui->journelText, SIGNAL(textChanged()), SLOT(writeBackJournel()));
+    connect(ui->dateText, SIGNAL(textChanged()), SLOT(writeBackDate()));
+    connect(ui->abstractText, SIGNAL(textChanged()), SLOT(writeBackAbstract()));
+    connect(ui->tagText, SIGNAL(textChanged()), SLOT(writeBackTag()));
 }
 
 
@@ -22,14 +26,57 @@ MainWindow::~MainWindow()
 
     delete ui;
 }
+
+void MainWindow::writeBackTitle(){
+    if (isSelect) {
+        QString changedText = ui->titleText->toPlainText();
+        paperlist->at(globali).title = changedText.toStdString();
+        globalItem->setText(changedText);
+    }
+}
+
+void MainWindow::writeBackJournel(){
+    if (isSelect) {
+        QString changedText = ui->journelText->toPlainText();
+        paperlist->at(globali).conference = changedText.toStdString();
+    }
+}
+
+void MainWindow::writeBackDate(){
+    if (isSelect) {
+        QString changedText = ui->dateText->toPlainText();
+        paperlist->at(globali).year = changedText.toInt();
+    }
+}
+
+void MainWindow::writeBackAbstract(){
+    if (isSelect) {
+        QString changedText = ui->abstractText->toPlainText();
+        paperlist->at(globali).abstract = changedText.toStdString();
+    }
+}
+
+
+void MainWindow::writeBackTag(){
+    if (isSelect) {
+        QString changedText = ui->tagText->toPlainText();
+        paperlist->at(globali).tag = changedText.toStdString();
+    }
+}
+
+
 void MainWindow::itemClick(QListWidgetItem* item){
+    isSelect = false;
     int i = 0;
     QString Name = item->text();
     for (int j = 0; j< paperlist->size();j++){
         if(paperlist->at(j).title == Name.toStdString()){
             i = j;
+            break;
         }
     }
+    globali = i;
+    globalItem = item;
     QString Title = QString::fromStdString(paperlist->at(i).title);
     ui->titleText->setPlainText(Title);
 //    QString Author = QString::fromStdString(paperlist->at(0).authors);
@@ -38,8 +85,11 @@ void MainWindow::itemClick(QListWidgetItem* item){
     ui->journelText->setPlainText(Journel);
     QString Date = QString::number(paperlist->at(i).year, 10);
     ui->dateText->setPlainText(Date);
+    QString Tag = QString::fromStdString(paperlist->at(i).tag);
+    ui->tagText->setPlainText(Tag);
     QString Abstract = QString::fromStdString(paperlist->at(i).abstract);
     ui->abstractText->setPlainText(Abstract);
+    isSelect = true;
 }
 
 
@@ -57,12 +107,6 @@ void MainWindow::updateTextString(){
 
 
 
-void MainWindow::on_titelText_windowTitleChanged(const QString &title)
-{
-
-}
-
-
 void MainWindow::on_importButton_clicked()
 {
     ui->listWidget->clear();
@@ -70,25 +114,4 @@ void MainWindow::on_importButton_clicked()
 }
 
 
-
-void MainWindow::on_importButton_destroyed(QObject *arg1)
-{
-
-}
-
-
-
-void MainWindow::on_listWidget_itemClicked(QListWidgetItem *LISTITEM_H)
-{
-//    QString Title = QString::fromStdString(paperlist->at(0).title);
-//    ui->titleText->setPlainText(Title);
-////    QString Author = QString::fromStdString(paperlist->at(0).authors);
-////    ui->authorText->setPlainText(Author);
-//    QString Journel = QString::fromStdString(paperlist->at(0).conference);
-//    ui->journelText->setPlainText(Journel);
-//    QString Date = QString::number(paperlist->at(0).year, 10);
-//    ui->dateText->setPlainText(Date);
-//    QString Abstract = QString::fromStdString(paperlist->at(0).abstract);
-//    ui->abstractText->setPlainText(Abstract);
-}
 

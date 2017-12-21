@@ -13,6 +13,7 @@ struct paper{
     string conference;
     int year;
     string keywords;
+    string tag;
     //string authors;
     vector<string> authors;
     //vector<string> references;
