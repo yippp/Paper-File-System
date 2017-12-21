@@ -20,25 +20,23 @@ public:
 
 public slots:
     void updateTextString();
-
-    void on_titelText_windowTitleChanged(const QString &title);
-
-    void on_importButton_clicked();
     void itemClick(QListWidgetItem*);
+    void writeBackTitle();
+    void writeBackJournel();
+    void writeBackDate();
+    void writeBackAbstract();
+    void writeBackTag();
+    void on_importButton_clicked();
+
 
 private slots:
-    void on_importButton_destroyed(QObject *arg1);
 
-
-
-    void on_listWidget_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
-    bool plainText;
-
+    bool isSelect;
+    int globali;
+    QListWidgetItem* globalItem;
 };
-
-
 
 #endif // MAINWINDOW_H

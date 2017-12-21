@@ -12,7 +12,7 @@ vector<paper>* process_all() {
     // check all pdf and find info
     vector<string> txtList = traversePDF();
     vector<vector<string>>* data = readStrings(txtList);
-    data = clean(data);
+    //data = clean(data);
     vector<paper> *papersList;
     papersList = findInfo(data);
     //saveToFile(papersList, txtList);
