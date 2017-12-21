@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1006</width>
+    <height>627</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="mainText" native="true">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>0</y>
+      <width>441</width>
+      <height>556</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="tileLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>15</y>
+       <width>27</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Title</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="authorLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>91</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Author</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="journelLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>173</y>
+       <width>45</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Journel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pagesLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>249</y>
+       <width>38</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pages</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="dateLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>325</y>
+       <width>29</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="tagLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>401</y>
+       <width>24</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tag</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="abstractLable">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>477</y>
+       <width>52</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Abstract</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="titleText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>15</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="authorText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>91</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="journelText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>173</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="pagesText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>249</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="dateText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>325</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="tagText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>401</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="abstractText">
+     <property name="geometry">
+      <rect>
+       <x>67</x>
+       <y>477</y>
+       <width>365</width>
+       <height>70</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>80</y>
+      <width>391</width>
+      <height>471</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>168</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="port">
+     <item>
+      <widget class="QPushButton" name="importButton">
+       <property name="text">
+        <string>Import</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exportButton">
+       <property name="text">
+        <string>Export</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>mainText</zorder>
+   <zorder>listWidget</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1006</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

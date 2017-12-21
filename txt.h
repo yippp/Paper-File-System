@@ -36,7 +36,7 @@ vector<string> traversePDF() { // find all PDF and convert
 
         string lowerFilename = toLower(filename); // lowercase
         if (lowerFilename.substr(lowerFilename.size() - 4) == ".pdf") {
-            //PDFtoTxt(filename); // comment for quick debugging other function
+            PDFtoTxt(filename); // comment for quick debugging other function
             txtList.push_back(filename.substr(0, filename.size() - 4) + ".txt");
             continue;
         }

@@ -1,9 +1,17 @@
-TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG -= qt
+QT       += core gui
 
-SOURCES += main.cpp
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TARGET = PDF_processing
+TEMPLATE = app
+#CONFIG += console c++11
+#CONFIG -= app_bundle
+#CONFIG -= qt
+
+DEFINES += QT_DEPRECATED_WARNINGS
+
+SOURCES += \
+    main.cpp \
+    mainwindow.cpp
 
 
 defineTest(copyToDestdir) {
@@ -30,4 +38,9 @@ HEADERS += \
     paper.h \
     stringrelative.h \
     txt.h \
-    findinfo.h
+    findinfo.h \
+    mainwindow.h \
+    listitem.h
+
+FORMS += \
+    mainwindow.ui
