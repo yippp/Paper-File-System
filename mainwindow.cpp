@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+
 MainWindow::~MainWindow()
 {
 
@@ -26,7 +27,6 @@ MainWindow::~MainWindow()
 void MainWindow::updateTextString(){
 //    std::vector<std::string> a;
 //    a.push_back("hello,world");
-    vector<paper>*paperlist = process_all();
     QString Qa = QString::fromStdString(paperlist->at(0).title);
     QListWidgetItem *listItem1 = new QListWidgetItem();
     listItem1->setText(Qa);
@@ -43,6 +43,7 @@ void MainWindow::on_titelText_windowTitleChanged(const QString &title)
 
 void MainWindow::on_importButton_clicked()
 {
+
     updateTextString();
 }
 
@@ -57,6 +58,6 @@ void MainWindow::on_importButton_destroyed(QObject *arg1)
 
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
-    QString Title = "title";
+    QString Title = QString::fromStdString(paperlist->at(0).title);
     ui->titleText->setPlainText(Title);
 }

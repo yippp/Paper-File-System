@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include "processall.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +15,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    vector<paper>*paperlist = process_all();
     ~MainWindow();
 
 public slots:
