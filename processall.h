@@ -7,7 +7,8 @@
 #include "paper.h"
 using namespace std;
 
-// put all the pdf file directely into the build file
 vector<paper>* process_all();
+void saveToFile(vector<paper>* papersList);
+vector<paper>* readFromFile();
 
 #endif // PROCESSALL_H
