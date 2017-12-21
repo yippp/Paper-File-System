@@ -5,6 +5,7 @@
 #include "txt.h"
 #include "findinfo.h"
 #include "mainwindow.h"
+#include "export.h"
 #include <QApplication>
 using namespace std;
 
