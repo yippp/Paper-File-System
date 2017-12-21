@@ -4,13 +4,16 @@
 #include "vector"
 #include "QString"
 #include "listitem.h"
+#include "processall.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
 
-    ui->setupUi(this);
+    QMainWindow(parent),
+
+    ui(new Ui::MainWindow)
+{    
+    ui->setupUi(this);   
 
 }
 
@@ -21,11 +24,12 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::updateTextString(){
-    std::vector<std::string> a;
-    a.push_back("hello,world");
-    QString Qa = QString::fromStdString(a[0]);
+//    std::vector<std::string> a;
+//    a.push_back("hello,world");
+    vector<paper>*paperlist = process_all();
+    QString Qa = QString::fromStdString(paperlist->at(0).title);
     QListWidgetItem *listItem1 = new QListWidgetItem();
-    listItem1->setText("hello");
+    listItem1->setText(Qa);
     ui->listWidget->addItem(listItem1);
 }
 
@@ -36,10 +40,13 @@ void MainWindow::on_titelText_windowTitleChanged(const QString &title)
 
 }
 
+
 void MainWindow::on_importButton_clicked()
 {
     updateTextString();
 }
+
+
 
 void MainWindow::on_importButton_destroyed(QObject *arg1)
 {

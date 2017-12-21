@@ -79,7 +79,7 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
                 // find authors between title and abstract
                 stringFindAuthor.push_back(txt.at(lineIndex));
             }
-            findAuthor(stringFindAuthor, newPaper); // which is slow
+            //findAuthor(stringFindAuthor, newPaper); // which is slow
         }
 
         papersList->push_back(newPaper);

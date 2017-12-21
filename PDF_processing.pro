@@ -11,7 +11,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    processall.cpp
 
 
 defineTest(copyToDestdir) {
@@ -40,7 +41,8 @@ HEADERS += \
     txt.h \
     findinfo.h \
     mainwindow.h \
-    listitem.h
+    listitem.h \
+    processall.h
 
 FORMS += \
     mainwindow.ui
