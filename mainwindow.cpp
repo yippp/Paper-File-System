@@ -94,8 +94,7 @@ void MainWindow::itemClick(QListWidgetItem* item){
 
 
 void MainWindow::updateTextString(){
-//    std::vector<std::string> a;
-//    a.push_back("hello,world");
+
     paperlist = process_all();
     for(int i=0; i< paperlist->size(); i++){
     QString paperName = QString::fromStdString(paperlist->at(i).title);

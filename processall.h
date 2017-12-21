@@ -9,6 +9,6 @@ using namespace std;
 
 vector<paper>* process_all();
 void saveToFile(vector<paper>* papersList, vector<string> txtList);
-vector<paper>* readFromFile();
+vector<string> readFromFile(vector<paper>* papersList);
 
 #endif // PROCESSALL_H

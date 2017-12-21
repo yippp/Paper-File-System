@@ -144,6 +144,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                 if (word.substr(word.size() - 7) == "/PERSON") {
                     if (newPaper.authors == "") {
                         newPaper.authors = removeSymbol(word.substr(0, word.size() - 7));
+                        cout << "author1: " << newPaper.authors.back() << endl;
                         addComma = true;
                     } else {
                         newPaper.authors += " " + removeSymbol(word.substr(0, word.size() - 7));
@@ -153,7 +154,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                         } else {
                             addComma = true;
                         }
-                        //cout << "author: " << newPaper.authors.back() << endl;
+                        cout << "author2: " << newPaper.authors.back() << endl;
                         //newPaper.authors.push_back("");
                     }
                 }
