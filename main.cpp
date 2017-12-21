@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
+//
 int process_all() {
     // check all pdf and find info
     vector<string> txtList = traversePDF();
