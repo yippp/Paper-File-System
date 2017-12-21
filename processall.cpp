@@ -17,7 +17,6 @@ vector<paper>* process_all() {
     data = clean(data);
     vector<paper> *papersList;
     papersList = findInfo(data);
-    exportBibTeX(papersList);
     return papersList;
 }
 
