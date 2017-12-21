@@ -26,12 +26,7 @@ vector<string> traversePDF() { // find all PDF and convert
     vector<string> txtList; // storage the name of all pdf
     struct dirent *ptr;
     DIR *dir;
-<<<<<<< HEAD
-    dir = opendir("/Users/punemajisi/Documents/GitHub/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/");
-=======
-
     dir = opendir("../../../"); // due to Qt GUI will change the working path
->>>>>>> upstream/master
     //dir = opendir("./");
     while((ptr=readdir(dir)) != NULL) {
         // Skip"." and ".."
@@ -56,11 +51,7 @@ vector<string> traversePDF() { // find all PDF and convert
 
 void PDFtoTxt(string const pdf) { // convert PDF to txt witl the same name using pdftotxt
     //string command = "./pdftotext -nodiag " + pdf;
-<<<<<<< HEAD
-    string command = "/Users/punemajisi/Documents/GitHub/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/pdftotext -nodiag /Users/punemajisi/Documents/GitHub/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/" + pdf;
-=======
     string command = "../../../pdftotext -nodiag ../../../" + pdf; // due to Qt GUI will change the working path
->>>>>>> upstream/master
     system(command.data());
 }
 
@@ -72,12 +63,8 @@ vector<vector<string>>* readStrings(vector<string> const txtList) { // read the 
     vector<string> empty;
     for (string txt : txtList) {
         data->push_back(empty);
-<<<<<<< HEAD
-        string tempAddress = "/Users/punemajisi/Documents/GitHub/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/" + txt;
-=======
         //qDebug()<<QDir::currentPath(); // show the path
         string tempAddress = "../../../" + txt;
->>>>>>> upstream/master
         infile.open(tempAddress.c_str());
         while(getline(infile, line)) {
             data->back().push_back(line);
