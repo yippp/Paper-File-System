@@ -26,7 +26,6 @@ vector<string> traversePDF() { // find all PDF and convert
     vector<string> txtList; // storage the name of all pdf
     struct dirent *ptr;
     DIR *dir;
-
     dir = opendir("../../../"); // due to Qt GUI will change the working path
     //dir = opendir("./");
     while((ptr=readdir(dir)) != NULL) {

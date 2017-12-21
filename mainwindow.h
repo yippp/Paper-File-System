@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include "processall.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +15,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    vector<paper>*paperlist;
     ~MainWindow();
 
 public slots:
@@ -22,6 +24,7 @@ public slots:
     void on_titelText_windowTitleChanged(const QString &title);
 
     void on_importButton_clicked();
+    void itemClick(QListWidgetItem*);
 
 private slots:
     void on_importButton_destroyed(QObject *arg1);
