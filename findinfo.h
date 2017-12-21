@@ -178,12 +178,14 @@ void findAbstrct(struct paper &newPaper, int const lineIndex, string const line,
         //cout << lineIndex << endl;
         //cout << newPaper.abstract.size() << endl;
         nextLine = true;
-
     } else if (nextLine) {
-        newPaper.abstract = noSpaceLine;
+        if (noSpaceLine.size() != 0) {
+            //cout << noSpaceLine << endl;
+            newPaper.abstract = noSpaceLine;
+            nextLine = false;
+        }
         //cout << newPaper.lineAbstract << endl;
         //cout << "abstract1: " << newPaper.abstract << endl;
-        nextLine = false;
 
     } else if (simpleLine.substr(0, 8) == "abstract" &&
                (noSpaceLine[8] = ':' || noSpaceLine[8] == '-')) {

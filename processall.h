@@ -8,7 +8,7 @@
 using namespace std;
 
 vector<paper>* process_all();
-void saveToFile(vector<paper>* papersList);
+void saveToFile(vector<paper>* papersList, vector<string> txtList);
 vector<paper>* readFromFile();
 
 #endif // PROCESSALL_H

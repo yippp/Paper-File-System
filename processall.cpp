@@ -15,28 +15,28 @@ vector<paper>* process_all() {
     data = clean(data);
     vector<paper> *papersList;
     papersList = findInfo(data);
-    //saveToFile(papersList);
+    //saveToFile(papersList, txtList);
+    cout<< sizeof(papersList->at(1)) << endl;
     return papersList;
 }
 
-void saveToFile(vector<paper>* papersList) {
-    fstream binary_file("../../../paperList.dat",ios::out|ios::binary|ios::app);
-    binary_file.write(reinterpret_cast<char *>(papersList),papersList->size()*sizeof(papersList));
-    binary_file.close();
+void saveToFile(vector<paper>* papersList, vector<string> txtList) {
+    int i = 0;
+    for (string txt : txtList) {
+        fstream binary_file("../../../"+ txt + ".dat",ios::out|ios::binary|ios::app);
+        binary_file.write(reinterpret_cast<char *>(papersList->at(i)), sizeof(papersList->at(i)));
+        binary_file.close();
+        i++;
+    }
+
 }
 
 vector<paper>* readFromFile() {
     vector<struct paper> *papersList = new vector<struct paper>;
     fstream binary_file("../../../paperList.dat",ios::binary|ios::in|ios::app);
-//    binary_file.seekg (0, ios::end);
-//    int size = binary_file.tellg();
-//    binary_file.read(reinterpret_cast<char *>(papersList),size);
-    int chunkSize = 1024;//<1MB
-    do {
-        char *buffer = new char[chunkSize];
-        binary_file.read(buffer, chunkSize - 1);
-        delete[] buffer;
-    } while(!binary_file.eof());
+    binary_file.seekg (0, ios::end);
+    int size = binary_file.tellg();
+    binary_file.read(reinterpret_cast<char *>(papersList),size);
     binary_file.close();
     return papersList;
 }
