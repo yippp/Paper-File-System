@@ -25,7 +25,8 @@ vector<string> traversePDF() { // find all PDF and convert
     vector<string> txtList; // storage the name of all pdf
     struct dirent *ptr;
     DIR *dir;
-    dir = opendir("./");
+    dir = opendir("/Users/yip/CppApp/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/");
+    //dir = opendir("./");
     while((ptr=readdir(dir)) != NULL) {
         // Skip"." and ".."
         if(ptr->d_name[0] == '.') {
@@ -48,7 +49,8 @@ vector<string> traversePDF() { // find all PDF and convert
 
 
 void PDFtoTxt(string const pdf) { // convert PDF to txt witl the same name using pdftotxt
-    string command = "./pdftotext -nodiag " + pdf;
+    //string command = "./pdftotext -nodiag " + pdf;
+    string command = "/Users/yip/CppApp/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/pdftotext -nodiag /Users/yip/CppApp/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/" + pdf;
     system(command.data());
 }
 
@@ -57,11 +59,13 @@ vector<vector<string>>* readStrings(vector<string> const txtList) { // read the 
     vector<vector<string>> *data = new vector<vector<string>>;
     string line;
     ifstream infile;
-    vector<string> newText;
-
+    //vector<string> newText;
+    vector<string> empty;
     for (string txt : txtList) {
-        data->push_back(newText);
-        infile.open(txt.c_str());
+        //data->push_back(newText);
+        data->push_back(empty);
+        string tempAddress = "/Users/yip/CppApp/build-PDF_processing-Desktop_Qt_5_9_1_clang_64bit-Debug/" + txt;
+        infile.open(tempAddress.c_str());
         while(getline(infile, line)) {
             data->back().push_back(line);
         }
