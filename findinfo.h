@@ -79,7 +79,7 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
                 // find authors between title and abstract
                 stringFindAuthor.push_back(txt.at(lineIndex));
             }
-            //findAuthor(stringFindAuthor, newPaper); // which is slow
+            findAuthor(stringFindAuthor, newPaper); // which is slow
         }
 
         papersList->push_back(newPaper);
@@ -109,7 +109,7 @@ void findKeywords(string const line, struct paper &newPaper) {
 void findAuthor(vector<string> &stringFindAuthor, struct paper &newPaper) {
     // use Stanford Named Entity Recognizer to find out people name
     ofstream ofile;
-    ofile.open("./findAuthor.txt");
+    ofile.open("../../../findAuthor.txt");
     //cout << stringFindAuthor.size() << endl;
     for (string line : stringFindAuthor) {
         if (line != "") {
@@ -117,9 +117,9 @@ void findAuthor(vector<string> &stringFindAuthor, struct paper &newPaper) {
         }
     }
     ofile.close();
-    string command = "java -mx700m -cp \"./stanford-ner.jar:$scriptdir/lib/*\" \
-edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ./class.crf.ser.gz \
--textFile ./findAuthor.txt > ./findAuthor.tsv";
+    string command = "java -mx700m -cp \"../../../stanford-ner.jar:$scriptdir/lib/*\" \
+edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz \
+-textFile ../../../findAuthor.txt > ../../../findAuthor.tsv";
     //cout << "ner" << endl;
     system(command.data());
     // call java program to find out the people name and output to tsv file
@@ -127,7 +127,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ./class.crf.ser.gz \
     // read NER data from tsv file
     ifstream infile;
     vector<string> nerData;
-    infile.open("./findAuthor.tsv");
+    infile.open("../../../findAuthor.tsv");
     string line;
     while(getline(infile, line)) {
         nerData.push_back(line);
@@ -145,13 +145,13 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ./class.crf.ser.gz \
                         newPaper.authors.back() = removeSymbol(word.substr(0, word.size() - 7));
                     } else {
                         newPaper.authors.back() += " " + removeSymbol(word.substr(0, word.size() - 7));
-                        //cout << "author: " << newPaper.authors.back() << endl;
+                        cout << "author: " << newPaper.authors.back() << endl;
                         newPaper.authors.push_back("");
                     }
                 }
             }
             if (newPaper.authors.back().find(" ") != string::npos) {
-                //cout << "author: " << newPaper.authors.back() << endl;
+                cout << "author: " << newPaper.authors.back() << endl;
                 newPaper.authors.push_back("");
             }
         }

@@ -5,6 +5,7 @@
 #include "txt.h"
 #include "findinfo.h"
 #include "mainwindow.h"
+#include "export.h"
 #include <QApplication>
 using namespace std;
 
@@ -16,6 +17,7 @@ vector<paper>* process_all() {
     data = clean(data);
     vector<paper> *papersList;
     papersList = findInfo(data);
+    exportBibTeX(papersList);
     return papersList;
 }
 

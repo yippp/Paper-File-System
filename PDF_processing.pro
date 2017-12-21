@@ -42,7 +42,8 @@ HEADERS += \
     findinfo.h \
     mainwindow.h \
     listitem.h \
-    processall.h
+    processall.h \
+    export.h
 
 FORMS += \
     mainwindow.ui
