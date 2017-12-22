@@ -32,6 +32,7 @@ public slots:
     void on_importButton_clicked();
     void on_exportButton_clicked();
     void setText();
+    void findText();
     void showFindText();
 
 private slots:
@@ -50,6 +51,8 @@ private:
     QListWidgetItem* globalItem;
     QDialog *findDlg;
     QLineEdit *findLineEdit;
+    QList<QListWidgetItem *> matchedStr;
+    int matchedCount;
 
 friend void saveToFile(vector<paper>* papersList, vector<string> txtList);
 };
