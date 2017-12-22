@@ -5,6 +5,8 @@
 #include "QString"
 #include "processall.h"
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -21,6 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tagText, SIGNAL(textChanged()), SLOT(writeBackTag()));
     connect(ui->authorText, SIGNAL(textChanged()), SLOT(writeBackAuthors()));
 
+    // create the pdf folder
+    int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+    if (cratePath) {
+        perror("create pdf folder failed");
+    }
+
     papersList = new vector<paper>;
     txtList = readFromFile(papersList);
     for(int i=0; i < (int)papersList->size(); i++){
@@ -29,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
         listItem->setText(paperName);
         ui->listWidget->addItem(listItem);
     }
+
 }
 
 
