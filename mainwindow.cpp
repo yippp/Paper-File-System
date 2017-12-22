@@ -3,12 +3,14 @@
 #include "string"
 #include "vector"
 #include "QString"
-
+#include "export.h"
 #include "processall.h"
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
+#include "QDialog"
+#include <QLineEdit>
+#include "QMessageBox"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -24,6 +26,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->abstractText, SIGNAL(textChanged()), SLOT(writeBackAbstract()));
     connect(ui->tagText, SIGNAL(textChanged()), SLOT(writeBackTag()));
     connect(ui->authorText, SIGNAL(textChanged()), SLOT(writeBackAuthors()));
+    connect(ui->exportButton,SIGNAL(clicked()), SLOT(setText()));
+
+    //Creation and layout of the findDialog Window.
+    findDlg = new QDialog(this);
+    findDlg->setWindowTitle(tr("Find"));
+    findLineEdit = new QLineEdit(findDlg);
+    QPushButton *findNextBtn = new QPushButton(tr("Find Next"), findDlg);
+    QVBoxLayout *findLayout = new QVBoxLayout(findDlg);
+    findLayout->addWidget(findLineEdit);
+    findLayout->addWidget(findNextBtn);
+    connect(findNextBtn, &QPushButton::clicked, this, &MainWindow::showFindText);
+
+
 
     // create the pdf folder
     int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
@@ -47,6 +62,17 @@ MainWindow::~MainWindow()
 {
     saveToFile(papersList, txtList);
     delete ui;
+}
+
+
+void MainWindow::setText(){
+    QString Success = "SUCCESS!";
+    ui->feedbackLabel->setText(Success);
+//    QTime dieTime = QTime::currentTime().addMSecs(msec);
+//    while( QTime::currentTime() < dieTime )
+//    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+//    ui->feedbackLabel->setText("");
+
 }
 
 void MainWindow::writeBackTitle(){
@@ -117,6 +143,7 @@ void MainWindow::itemClick(QListWidgetItem* item){
         QString Date = QString::number(papersList->at(i).year, 10);
         ui->dateText->setPlainText(Date);
     } else {
+        //prevent illegal string.
         QString Date = QString::fromStdString("");
         ui->dateText->setPlainText(Date);
     }
@@ -153,5 +180,20 @@ void MainWindow::on_importButton_clicked()
 
 void MainWindow::on_exportButton_clicked()
 {
+    exportBibTeX(papersList);
+}
 
+void MainWindow::on_findButton_clicked()
+{
+    findDlg->show();
+}
+
+void MainWindow::showFindText(){
+    QString str = findLineEdit->text();
+    QList<QListWidgetItem *> matchedStr = ui->listWidget->findItems(str,Qt::MatchContains);
+//    if (!ui->listWidget->findItems(str,Qt::MatchContains))
+//    {
+//        QMessageBox::warning(this, tr("Find"),
+//                             tr("Not Found %1").arg(str));
+//    }
 }
