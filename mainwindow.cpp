@@ -41,6 +41,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle(tr("Page File System"));
 
+
+
+    setWindowTitle(tr("Page File System"));
+
     // create the pdf folder
     int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
@@ -213,12 +217,19 @@ void MainWindow::on_findButton_clicked()
     findDlg->show();
 }
 
-void MainWindow::showFindText(){
+void MainWindow::findText(){
     QString str = findLineEdit->text();
-    QList<QListWidgetItem *> matchedStr = ui->listWidget->findItems(str,Qt::MatchContains);
-//    if (!ui->listWidget->findItems(str,Qt::MatchContains))
-//    {
-//        QMessageBox::warning(this, tr("Find"),
-//                             tr("Not Found %1").arg(str));
-//    }
+    matchedStr = ui->listWidget->findItems(str,Qt::MatchContains);
+}
+
+
+void MainWindow::showFindText(){
+    findText();
+    if(matchedCount < matchedStr.size()){
+        ui->listWidget->setCurrentItem(matchedStr[matchedCount]);
+        matchedCount++;
+    }
+    if(matchedCount >= matchedStr.size()){
+        matchedCount = 0;
+    }
 }
