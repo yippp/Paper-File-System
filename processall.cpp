@@ -7,6 +7,11 @@
 #include <QApplication>
 #include <fstream>
 #include <iostream>
+#include<fstream>
+#include<stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
 using namespace std;
 
 vector<paper>* process_all(vector<paper>* papersList, vector<string> txtList, vector<string> &newTxtList) {
@@ -31,6 +36,12 @@ vector<paper>* process_all(vector<paper>* papersList, vector<string> txtList, ve
 }
 
 void saveToFile(vector<paper>* papersList, vector<string> txtList) {
+    // create the data folder
+    int cratePath = mkdir("../../../data/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+    if (cratePath) {
+        perror("create data folder failed");
+    }
+
     ofstream file;
     file.open("../../../data/file.txt");
     ofstream title;

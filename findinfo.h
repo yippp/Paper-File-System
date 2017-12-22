@@ -127,7 +127,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
     // read NER data from tsv file
     ifstream infile;
     vector<string> nerData;
-    infile.open("../../../findAuthor.tsv");
+    infile.open("../../../temp/findAuthor.tsv");
     string line;
     while(getline(infile, line)) {
         nerData.push_back(line);
@@ -135,7 +135,6 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
     infile.close();
 
     vector<string> words;
-    //newPaper.authors.push_back("");
     bool addComma = true;
     for (string line : nerData) {
         words = split(line, " ");
@@ -159,10 +158,6 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                     }
                 }
             }
-//            if (newPaper.authors.back().find(" ") != string::npos) {
-//                //cout << "author: " << newPaper.authors.back() << endl;
-//                newPaper.authors.push_back("");
-//            }
         }
     }
     newPaper.authors = removeSpace(newPaper.authors);

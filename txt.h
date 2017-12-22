@@ -26,7 +26,7 @@ vector<string> traversePDF() { // find all PDF and convert
     vector<string> txtList; // storage the name of all pdf
     struct dirent *ptr;
     DIR *dir;
-    dir = opendir("../../../"); // due to Qt GUI will change the working path
+    dir = opendir("../../../pdf/"); // due to Qt GUI will change the working path
     //dir = opendir("./");
     while((ptr=readdir(dir)) != NULL) {
         // Skip"." and ".."
@@ -51,7 +51,7 @@ vector<string> traversePDF() { // find all PDF and convert
 
 void PDFtoTxt(string const pdf) { // convert PDF to txt witl the same name using pdftotxt
     //string command = "./pdftotext -nodiag " + pdf;
-    string command = "../../../pdftotext -nodiag ../../../" + pdf; // due to Qt GUI will change the working path
+    string command = "../../../pdftotext -nodiag ../../../pdf/" + pdf; // due to Qt GUI will change the working path
     system(command.data());
 }
 
@@ -64,7 +64,7 @@ vector<vector<string>>* readStrings(vector<string> const txtList) { // read the 
     for (string txt : txtList) {
         data->push_back(empty);
         //qDebug()<<QDir::currentPath(); // show the path
-        string tempAddress = "../../../" + txt;
+        string tempAddress = "../../../pdf/" + txt;
         infile.open(tempAddress.c_str());
         while(getline(infile, line)) {
             data->back().push_back(line);
