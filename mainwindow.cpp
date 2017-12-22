@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tagText, SIGNAL(textChanged()), SLOT(writeBackTag()));
     connect(ui->authorText, SIGNAL(textChanged()), SLOT(writeBackAuthors()));
 
+    setWindowTitle(tr("Page File System"));
+
     // create the pdf folder
     int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
