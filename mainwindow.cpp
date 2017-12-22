@@ -102,8 +102,13 @@ void MainWindow::itemClick(QListWidgetItem* item){
     ui->authorText->setPlainText(Author);
     QString Journel = QString::fromStdString(papersList->at(i).conference);
     ui->journelText->setPlainText(Journel);
-    QString Date = QString::number(papersList->at(i).year, 10);
-    ui->dateText->setPlainText(Date);
+    if (papersList->at(i).year > 0) {
+        QString Date = QString::number(papersList->at(i).year, 10);
+        ui->dateText->setPlainText(Date);
+    } else {
+        QString Date = QString::fromStdString("");
+        ui->dateText->setPlainText(Date);
+    }
     QString Tag = QString::fromStdString(papersList->at(i).tag);
     ui->tagText->setPlainText(Tag);
     QString Abstract = QString::fromStdString(papersList->at(i).abstract);
