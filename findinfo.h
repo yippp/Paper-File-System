@@ -135,25 +135,40 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
     infile.close();
 
     vector<string> words;
-    newPaper.authors.push_back("");
+    //newPaper.authors.push_back("");
+    bool addComma = true;
     for (string line : nerData) {
         words = split(line, " ");
         for (string word : words) {
             if (word.size() > 7) {
                 if (word.substr(word.size() - 7) == "/PERSON") {
-                    if (newPaper.authors.back() == "") {
-                        newPaper.authors.back() = removeSymbol(word.substr(0, word.size() - 7));
+                    if (newPaper.authors == "") {
+                        newPaper.authors = removeSymbol(word.substr(0, word.size() - 7));
+                        //cout << "author1: " << newPaper.authors << endl;
+                        addComma = true;
                     } else {
-                        newPaper.authors.back() += " " + removeSymbol(word.substr(0, word.size() - 7));
-                        cout << "author: " << newPaper.authors.back() << endl;
-                        newPaper.authors.push_back("");
+                        newPaper.authors += " " + removeSymbol(word.substr(0, word.size() - 7));
+                        if (addComma) {
+                            newPaper.authors += ", ";
+                            addComma = false;
+                        } else {
+                            addComma = true;
+                        }
+                        //cout << "author2: " << newPaper.authors << endl;
+                        //newPaper.authors.push_back("");
                     }
                 }
             }
-            if (newPaper.authors.back().find(" ") != string::npos) {
-                cout << "author: " << newPaper.authors.back() << endl;
-                newPaper.authors.push_back("");
-            }
+//            if (newPaper.authors.back().find(" ") != string::npos) {
+//                //cout << "author: " << newPaper.authors.back() << endl;
+//                newPaper.authors.push_back("");
+//            }
+        }
+    }
+    newPaper.authors = removeSpace(newPaper.authors);
+    if (newPaper.authors.size() > 2) {
+        if (newPaper.authors.at(newPaper.authors.size() - 1) == ',') {
+            newPaper.authors = newPaper.authors.substr(0, newPaper.authors.size() - 2);
         }
     }
 }
@@ -178,12 +193,14 @@ void findAbstrct(struct paper &newPaper, int const lineIndex, string const line,
         //cout << lineIndex << endl;
         //cout << newPaper.abstract.size() << endl;
         nextLine = true;
-
     } else if (nextLine) {
-        newPaper.abstract = noSpaceLine;
+        if (noSpaceLine.size() != 0 && noSpaceLine.size() != 1) {
+            //cout << noSpaceLine << endl;
+            newPaper.abstract = noSpaceLine;
+            nextLine = false;
+        }
         //cout << newPaper.lineAbstract << endl;
         //cout << "abstract1: " << newPaper.abstract << endl;
-        nextLine = false;
 
     } else if (simpleLine.substr(0, 8) == "abstract" &&
                (noSpaceLine[8] = ':' || noSpaceLine[8] == '-')) {
