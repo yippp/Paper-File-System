@@ -5,13 +5,14 @@
 #include "QString"
 #include "export.h"
 #include "processall.h"
+
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "QDialog"
+#include <QDialog>
 #include <QLineEdit>
 #include <QFileDialog>
-#include "QMessageBox"
+#include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
 #include <QGridLayout>
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
 
     ui(new Ui::MainWindow)
-{    
+{
     ui->setupUi(this);
     //For connect text change with the data save
     //ui->mainText->setLayout();
@@ -34,27 +35,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Creation and layout of the findDialog Window.
     findDlg = new QDialog(this);
-    findDlg->setWindowTitle(tr("Find"));
+    findDlg->setWindowTitle(QString("Find"));
     findLineEdit = new QLineEdit(findDlg);
-    QPushButton *findNextBtn = new QPushButton(tr("Find Next"), findDlg);
+    QPushButton *findNextBtn = new QPushButton(QString("Find Next"), findDlg);
     QVBoxLayout *findLayout = new QVBoxLayout(findDlg);
     findLayout->addWidget(findLineEdit);
     findLayout->addWidget(findNextBtn);
     connect(findNextBtn, &QPushButton::clicked, this, &MainWindow::showFindText);
 
-    setWindowTitle(tr("Page File System"));
+    setWindowTitle(QString("Page File System"));
 
     // create the pdf folder
-    int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
-    if (cratePath) {
-        //perror("create pdf folder failed");
-    }
+    mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     // create the temp folder
-    cratePath = mkdir("../../../temp/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
-    if (cratePath) {
-        //perror("create temp folder failed");
-    }
-
+    mkdir("../../../temp/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
 
     papersList = new vector<paper>;
     txtList = readFromFile(papersList);
@@ -82,7 +76,6 @@ void MainWindow::writeBackTitle(){
         QString changedText = ui->titleText->toPlainText();
         papersList->at(globali).title = changedText.toStdString();
         globalItem->setText(changedText);
-        //saveToFile(papersList, txtList);
     }
 }
 
@@ -184,13 +177,12 @@ void MainWindow::on_importButton_clicked()
 
 void MainWindow::on_exportButton_clicked()
 {
-    //exportBibTeX(papersList);
     saveAs();
 }
 
 bool MainWindow::saveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as"), tr("BibTeX.txt"));
+    QString fileName = QFileDialog::getSaveFileName(this, QString("Save as"), QString("BibTeX.txt"));
     if (fileName.isEmpty()) return false;
     return saveFile(fileName);
 }
@@ -199,13 +191,13 @@ bool MainWindow::saveFile(const QString &fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
-        QMessageBox::warning(this, tr("Page File System"),
-                             tr("Cannot save file %1：/n %2")
+        QMessageBox::warning(this, QString("Page File System"),
+                             QString("Cannot save file %1：/n %2")
                              .arg(fileName).arg(file.errorString()));
         return false;
     }
 
-    QTextStream in(&file); // 新建文本流对象
+    QTextStream in(&file);
     QString txt = QString::fromStdString(exportBibTeX(papersList));
     in << txt;
     file.close();
@@ -218,6 +210,7 @@ void MainWindow::on_findButton_clicked()
 {
     findDlg->show();
 }
+
 
 //search function implementation.
 void MainWindow::findText(){

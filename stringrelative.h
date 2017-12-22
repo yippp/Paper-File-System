@@ -16,6 +16,7 @@ string toLower(string str);
 vector<string> split(const string& str, const string& delimiter);
 
 bool isNum(string const str) {
+    // check whethe str is a number
     for (int i = 0; i < (int)str.size(); i++) {
         int tmp = (int)str[i];
         if (tmp >= 48 && tmp <= 57) {

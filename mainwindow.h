@@ -1,11 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include "paper.h"
 #include "ui_mainwindow.h"
 #include "processall.h"
+
+#include <QMainWindow>
 #include <vector>
-#include "paper.h"
 #include <QString>
 
 namespace Ui {

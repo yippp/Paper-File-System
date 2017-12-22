@@ -14,19 +14,12 @@ string exportBibTeX(vector<paper>* paperList) {
         current = paperList->at(i);
 
         txt << "@inproceedings{" << i << "," << endl;
-
         txt << "authors={" << (string)current.authors << "}," << endl;
-
         txt << "booktitle={" << current.conference << "}," << endl;
-
         txt << "title={" << current.title << "}," << endl;
-
         txt << "year={" << current.year << "}," << endl;
-
         txt << "keywords={" << current.keywords << "}," << endl;
-
         txt << "doi={" << current.DOI << "}," << endl;
-
         txt << "}" << endl << endl;
     }
     string str = txt.str(); // remove all '\0'

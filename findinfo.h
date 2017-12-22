@@ -175,6 +175,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
 
 
 void findDOI(string const line, string &doi) {
+    // find the DOI using regix matching
     string pattern("10\\.[^\\s\\/]+\\/[^\\s]+"); // regix of DOI
     regex r(pattern);
     smatch results;
@@ -191,7 +192,7 @@ void findAbstrct(struct paper &newPaper, int const lineIndex, string const line,
 
     if (simpleLine == "abstract" ) { // content is in the next line
         newPaper.lineAbstract = lineIndex;
-        //cout << lineIndex << endl;
+        //cout << lineIndex << endl; // all the commented cout in this file is used for debug findInfo
         //cout << newPaper.abstract.size() << endl;
         nextLine = true;
     } else if (nextLine) {

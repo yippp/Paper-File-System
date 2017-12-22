@@ -11,8 +11,10 @@
 
 #include "stringrelative.h"
 #include "paper.h"
+// for debug
 //#include "qdebug.h"
 //#include "qdir.h"
+
 using namespace std;
 
 //prototypes
@@ -51,8 +53,8 @@ vector<string> traversePDF() {
 
 void PDFtoTxt(string const pdf) {
     // convert PDF to txt witl the same name using pdftotxt
-    //string command = "./pdftotext -nodiag " + pdf;
-    string command = "../../../pdftotext -nodiag ../../../pdf/" + pdf; // due to Qt GUI will change the working path
+    string command = "../../../pdftotext -nodiag ../../../pdf/" + pdf;
+    // due to Qt GUI will change the working path
     system(command.data());
 }
 

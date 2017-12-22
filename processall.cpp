@@ -37,10 +37,8 @@ vector<paper>* process_all(vector<paper>* papersList, vector<string> txtList, ve
 
 void saveToFile(vector<paper>* papersList, vector<string> txtList) {
     // create the data folder
-    int cratePath = mkdir("../../../data/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
-    if (cratePath) {
-        //perror("create data folder failed");
-    }
+    mkdir("../../../data/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+
 
     ofstream file;
     file.open("../../../data/file.dat");
@@ -90,6 +88,7 @@ vector<string> readFromFile(vector<paper> *papersList) {
     file.open("../../../data/file.dat");
     vector<string> txtList;
     if(file) {
+        // if there is saved data
         ifstream title;
         title.open("../../../data/title.dat");
         ifstream authors;
