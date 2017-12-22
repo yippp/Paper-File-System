@@ -201,16 +201,29 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="feedbackLabel">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>168</width>
-      <height>26</height>
+      <x>30</x>
+      <y>10</y>
+      <width>91</width>
+      <height>58</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="port">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="importButton">
        <property name="text">
@@ -219,17 +232,36 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="exportButton">
-       <property name="text">
-        <string>Export</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="port">
+       <item>
+        <widget class="QPushButton" name="exportButton">
+         <property name="text">
+          <string>Export</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="findButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>20</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Find</string>
+    </property>
    </widget>
    <zorder>layoutWidget</zorder>
    <zorder>mainText</zorder>
    <zorder>listWidget</zorder>
+   <zorder>feedbackLabel</zorder>
+   <zorder>findButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

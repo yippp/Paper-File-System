@@ -30,10 +30,16 @@ public slots:
     void writeBackTag();
     void writeBackAuthors();
     void on_importButton_clicked();
-
+    void on_exportButton_clicked();
+    void setText();
+    void showFindText();
 
 private slots:
 
+
+
+
+    void on_findButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -42,6 +48,8 @@ private:
 
     vector<string> txtList;
     QListWidgetItem* globalItem;
+    QDialog *findDlg;
+    QLineEdit *findLineEdit;
 
 friend void saveToFile(vector<paper>* papersList, vector<string> txtList);
 };
