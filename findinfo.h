@@ -11,6 +11,10 @@
 #include "stringrelative.h"
 #include "txt.h"
 
+// for debug
+//#include "qdebug.h"
+//#include "qdir.h"
+
 using namespace std;
 
 
@@ -79,7 +83,7 @@ vector<struct paper>* findInfo(vector<vector<string>>* data) {
                 // find authors between title and abstract
                 stringFindAuthor.push_back(txt.at(lineIndex));
             }
-            //findAuthor(stringFindAuthor, newPaper); // which is slow
+            findAuthor(stringFindAuthor, newPaper); // which is slow
         }
 
         papersList->push_back(newPaper);
@@ -109,7 +113,7 @@ void findKeywords(string const line, struct paper &newPaper) {
 void findAuthor(vector<string> &stringFindAuthor, struct paper &newPaper) {
     // use Stanford Named Entity Recognizer to find out people name
     ofstream ofile;
-    ofile.open("../../../findAuthor.txt");
+    ofile.open("../../../temp/findAuthor.txt");
     //cout << stringFindAuthor.size() << endl;
     for (string line : stringFindAuthor) {
         if (line != "") {
@@ -117,9 +121,10 @@ void findAuthor(vector<string> &stringFindAuthor, struct paper &newPaper) {
         }
     }
     ofile.close();
+    //qDebug()<<QDir::currentPath(); // show the path
     string command = "java -mx700m -cp \"../../../stanford-ner.jar:$scriptdir/lib/*\" \
 edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz \
--textFile ../../../findAuthor.txt > ../../../findAuthor.tsv";
+-textFile ../../../temp/findAuthor.txt > ../../../temp/findAuthor.tsv";
     //cout << "ner" << endl;
     system(command.data());
     // call java program to find out the people name and output to tsv file
@@ -154,7 +159,6 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                             addComma = true;
                         }
                         //cout << "author2: " << newPaper.authors << endl;
-                        //newPaper.authors.push_back("");
                     }
                 }
             }
