@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {    
     ui->setupUi(this);
+    //ui->titleText->setContentsMargins(100,100,100,100);
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemClick(QListWidgetItem*)));
     connect(ui->titleText, SIGNAL(textChanged()), SLOT(writeBackTitle()));
     connect(ui->journelText, SIGNAL(textChanged()), SLOT(writeBackJournel()));

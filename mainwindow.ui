@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1006</width>
-    <height>627</height>
+    <width>1045</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,17 +17,17 @@
    <widget class="QWidget" name="mainText" native="true">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>0</y>
-      <width>441</width>
-      <height>556</height>
+      <x>370</x>
+      <y>20</y>
+      <width>650</width>
+      <height>531</height>
      </rect>
     </property>
     <widget class="QLabel" name="tileLabel">
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>15</y>
+       <y>9</y>
        <width>27</width>
        <height>16</height>
       </rect>
@@ -36,91 +36,13 @@
       <string>Title</string>
      </property>
     </widget>
-    <widget class="QLabel" name="authorLabel">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>91</y>
-       <width>41</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Author</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="journelLabel">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>173</y>
-       <width>45</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Journel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="pagesLabel">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>249</y>
-       <width>38</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Pages</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="dateLabel">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>325</y>
-       <width>29</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Date</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="tagLabel">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>401</y>
-       <width>24</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Tag</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="abstractLable">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>477</y>
-       <width>52</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Abstract</string>
-     </property>
-    </widget>
     <widget class="QTextEdit" name="titleText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>15</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>9</y>
+       <width>555</width>
+       <height>80</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -129,74 +51,138 @@
        <height>70</height>
       </size>
      </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="authorLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>95</y>
+       <width>48</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Authors</string>
+     </property>
     </widget>
     <widget class="QTextEdit" name="authorText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>91</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>95</y>
+       <width>555</width>
+       <height>81</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="journelLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>182</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Conference</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="journelText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>173</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>182</y>
+       <width>555</width>
+       <height>80</height>
       </rect>
      </property>
     </widget>
-    <widget class="QTextEdit" name="pagesText">
+    <widget class="QLabel" name="dateLabel">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>249</y>
-       <width>365</width>
-       <height>70</height>
+       <x>9</x>
+       <y>268</y>
+       <width>28</width>
+       <height>16</height>
       </rect>
+     </property>
+     <property name="text">
+      <string>Year</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="dateText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>325</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>268</y>
+       <width>555</width>
+       <height>81</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="tagLabel">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>355</y>
+       <width>24</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Tag</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="tagText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>401</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>355</y>
+       <width>555</width>
+       <height>80</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="abstractLable">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>441</y>
+       <width>52</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Abstract</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="abstractText">
      <property name="geometry">
       <rect>
-       <x>67</x>
-       <y>477</y>
-       <width>365</width>
-       <height>70</height>
+       <x>86</x>
+       <y>441</y>
+       <width>555</width>
+       <height>81</height>
       </rect>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="tabStopWidth">
+      <number>100</number>
      </property>
     </widget>
    </widget>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>20</x>
       <y>80</y>
-      <width>391</width>
+      <width>331</width>
       <height>471</height>
      </rect>
     </property>
@@ -234,14 +220,14 @@
    <widget class="QPushButton" name="findButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>20</y>
-      <width>80</width>
-      <height>24</height>
+      <x>249</x>
+      <y>23</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Find</string>
+     <string>Search</string>
     </property>
    </widget>
    <zorder>layoutWidget</zorder>
@@ -254,8 +240,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1006</width>
-     <height>25</height>
+     <width>1045</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
