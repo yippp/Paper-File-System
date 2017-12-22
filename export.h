@@ -2,22 +2,20 @@
 #define EXPORT_H
 
 #include <string>
-#include <fstream>
-#include <iostream>
+#include <sstream>
 #include "paper.h"
 using namespace std;
 
-void exportBibTeX(vector<paper>* paperList) {
+string exportBibTeX(vector<paper>* paperList) {
     // used for export buttom, to export BibTeX format references for all papers
-    ofstream txt;
-    txt.open("../../../BibTeX.txt");
+    stringstream txt;
     paper current;
-    for (int i = 0; i < paperList->size(); i++) {
+    for (int i = 0; i < (int)paperList->size(); i++) {
         current = paperList->at(i);
 
         txt << "@inproceedings{" << i << "," << endl;
 
-        txt << "authors={" << current.authors << "}," << endl;
+        txt << "authors={" << (string)current.authors << "}," << endl;
 
         txt << "booktitle={" << current.conference << "}," << endl;
 
@@ -29,9 +27,11 @@ void exportBibTeX(vector<paper>* paperList) {
 
         txt << "doi={" << current.DOI << "}," << endl;
 
-        txt << "}" << endl;
+        txt << "}" << endl << endl;
     }
-    txt.close();
+    string str = txt.str(); // remove all '\0'
+    str.erase(remove(str.begin(), str.end(), '\0'), str.end());
+    return str;
 }
 
 #endif // EXPORT_H

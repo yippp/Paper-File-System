@@ -6,6 +6,7 @@
 #include "processall.h"
 #include <vector>
 #include "paper.h"
+#include <QString>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     vector<paper>*papersList;
     ~MainWindow();
+    bool saveAs();
+    bool saveFile(const QString &filename);
 
 public slots:
     void updateTextString();
@@ -36,9 +39,6 @@ public slots:
     void showFindText();
 
 private slots:
-
-
-
 
     void on_findButton_clicked();
 
