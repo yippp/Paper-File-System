@@ -14,6 +14,7 @@
 #include "QMessageBox"
 #include <QFile>
 #include <QTextStream>
+#include <QGridLayout>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {    
     ui->setupUi(this);
+    //For connect text change with the data save
+    //ui->mainText->setLayout();
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemClick(QListWidgetItem*)));
     connect(ui->titleText, SIGNAL(textChanged()), SLOT(writeBackTitle()));
     connect(ui->journelText, SIGNAL(textChanged()), SLOT(writeBackJournel()));
@@ -38,10 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
     findLayout->addWidget(findLineEdit);
     findLayout->addWidget(findNextBtn);
     connect(findNextBtn, &QPushButton::clicked, this, &MainWindow::showFindText);
-
-    setWindowTitle(tr("Page File System"));
-
-
 
     setWindowTitle(tr("Page File System"));
 
@@ -76,7 +75,8 @@ MainWindow::~MainWindow()
 }
 
 
-
+//Writed back methord for Title,authors,conference,year,tags,abstraction.
+//All these infomation will be save automatically.
 void MainWindow::writeBackTitle(){
     if (isSelect) {
         QString changedText = ui->titleText->toPlainText();
@@ -122,7 +122,8 @@ void MainWindow::writeBackTag(){
     }
 }
 
-
+//Click the item in the list of papers to show the content of paper
+// in the text edit in right side.
 void MainWindow::itemClick(QListWidgetItem* item){
     isSelect = false;
     int i = 0;
@@ -157,6 +158,7 @@ void MainWindow::itemClick(QListWidgetItem* item){
 }
 
 
+//import paper list in the pdf folder.
 void MainWindow::updateTextString(){
 
     vector<string> newTxtList;
@@ -217,6 +219,7 @@ void MainWindow::on_findButton_clicked()
     findDlg->show();
 }
 
+//search function implementation.
 void MainWindow::findText(){
     QString str = findLineEdit->text();
     matchedStr = ui->listWidget->findItems(str,Qt::MatchContains);

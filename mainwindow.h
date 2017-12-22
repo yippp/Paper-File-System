@@ -34,7 +34,6 @@ public slots:
     void writeBackAuthors();
     void on_importButton_clicked();
     void on_exportButton_clicked();
-    void setText();
     void findText();
     void showFindText();
 
