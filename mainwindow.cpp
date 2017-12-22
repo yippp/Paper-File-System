@@ -3,7 +3,9 @@
 #include "string"
 #include "vector"
 #include "QString"
+
 #include "processall.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -114,4 +116,7 @@ void MainWindow::on_importButton_clicked()
 }
 
 
+void MainWindow::on_exportButton_clicked()
+{
 
+}

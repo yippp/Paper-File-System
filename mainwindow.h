@@ -27,9 +27,11 @@ public slots:
     void writeBackAbstract();
     void writeBackTag();
     void on_importButton_clicked();
-
+    void on_exportButton_clicked();
 
 private slots:
+
+
 
 
 private:
