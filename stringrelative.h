@@ -28,7 +28,8 @@ bool isNum(string const str) {
 }
 
 
-string removeSpace(string str) { // remove the string in the begin and end
+string removeSpace(string str) {
+    // remove the string in the begin and end
     string buff(str);
     char space = ' ';
     str.assign(buff.begin() + buff.find_first_not_of(space),
@@ -36,7 +37,8 @@ string removeSpace(string str) { // remove the string in the begin and end
     return str;
 }
 
-string removeSymbol(string str) { // remove symbol, number and space
+string removeSymbol(string str) {
+    // remove symbol, number and space
     str.erase(remove_if(str.begin(), str.end(),
                         static_cast<int(*)(int)>(&ispunct)), str.end());
     str.erase(remove_if(str.begin(), str.end(),
@@ -45,6 +47,7 @@ string removeSymbol(string str) { // remove symbol, number and space
 }
 
 string toLower(string str) {
+    // lower all chars
     transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
 }

@@ -40,11 +40,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+    setWindowTitle(tr("Page File System"));
+
     // create the pdf folder
     int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
         perror("create pdf folder failed");
     }
+    // create the temp folder
+    cratePath = mkdir("../../../temp/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+    if (cratePath) {
+        perror("create temp folder failed");
+    }
+
 
     papersList = new vector<paper>;
     txtList = readFromFile(papersList);
