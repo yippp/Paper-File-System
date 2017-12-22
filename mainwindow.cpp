@@ -14,6 +14,7 @@
 #include "QMessageBox"
 #include <QFile>
 #include <QTextStream>
+#include <QGridLayout>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,7 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {    
     ui->setupUi(this);
-    //ui->titleText->setContentsMargins(100,100,100,100);
+    //For connect text change with the data save
+    //ui->mainText->setLayout();
     connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemClick(QListWidgetItem*)));
     connect(ui->titleText, SIGNAL(textChanged()), SLOT(writeBackTitle()));
     connect(ui->journelText, SIGNAL(textChanged()), SLOT(writeBackJournel()));
@@ -39,10 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
     findLayout->addWidget(findLineEdit);
     findLayout->addWidget(findNextBtn);
     connect(findNextBtn, &QPushButton::clicked, this, &MainWindow::showFindText);
-
-    setWindowTitle(tr("Page File System"));
-
-
 
     setWindowTitle(tr("Page File System"));
 
