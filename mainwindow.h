@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    vector<paper>*paperslist;
+    vector<paper>*papersList;
     ~MainWindow();
 
 public slots:
@@ -28,6 +28,7 @@ public slots:
     void writeBackDate();
     void writeBackAbstract();
     void writeBackTag();
+    void writeBackAuthors();
     void on_importButton_clicked();
 
 
@@ -38,9 +39,11 @@ private:
     Ui::MainWindow *ui;
     bool isSelect;
     int globali;
-    vector<paper>* papersList;
+
     vector<string> txtList;
     QListWidgetItem* globalItem;
+
+friend void saveToFile(vector<paper>* papersList, vector<string> txtList);
 };
 
 #endif // MAINWINDOW_H

@@ -155,6 +155,7 @@ vector<string> readFromFile(vector<paper> *papersList) {
         keywords.close();
         conference.close();
         DOI.close();
+        saveToFile(papersList, txtList);
     } else {
         perror("can not find saved data.");
     }

@@ -144,7 +144,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                 if (word.substr(word.size() - 7) == "/PERSON") {
                     if (newPaper.authors == "") {
                         newPaper.authors = removeSymbol(word.substr(0, word.size() - 7));
-                        cout << "author1: " << newPaper.authors.back() << endl;
+                        //cout << "author1: " << newPaper.authors << endl;
                         addComma = true;
                     } else {
                         newPaper.authors += " " + removeSymbol(word.substr(0, word.size() - 7));
@@ -154,7 +154,7 @@ edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../../../class.crf.ser.gz 
                         } else {
                             addComma = true;
                         }
-                        cout << "author2: " << newPaper.authors.back() << endl;
+                        //cout << "author2: " << newPaper.authors << endl;
                         //newPaper.authors.push_back("");
                     }
                 }
@@ -194,7 +194,7 @@ void findAbstrct(struct paper &newPaper, int const lineIndex, string const line,
         //cout << newPaper.abstract.size() << endl;
         nextLine = true;
     } else if (nextLine) {
-        if (noSpaceLine.size() != 0) {
+        if (noSpaceLine.size() != 0 && noSpaceLine.size() != 1) {
             //cout << noSpaceLine << endl;
             newPaper.abstract = noSpaceLine;
             nextLine = false;
