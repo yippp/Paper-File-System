@@ -9,6 +9,7 @@
 using namespace std;
 
 void exportBibTeX(vector<paper>* paperList) {
+    // used for export buttom, to export BibTeX format references for all papers
     ofstream txt;
     txt.open("../../../BibTeX.txt");
     paper current;

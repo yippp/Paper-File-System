@@ -1,16 +1,16 @@
-#include "processall.h"
 #include <vector>
-#include "paper.h"
-#include "txt.h"
-#include "findinfo.h"
-#include "mainwindow.h"
 #include <QApplication>
 #include <fstream>
 #include <iostream>
-#include<fstream>
-#include<stdlib.h>
+#include <fstream>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#include "processall.h"
+#include "paper.h"
+#include "txt.h"
+#include "findinfo.h"
 
 using namespace std;
 
@@ -43,23 +43,23 @@ void saveToFile(vector<paper>* papersList, vector<string> txtList) {
     }
 
     ofstream file;
-    file.open("../../../data/file.txt");
+    file.open("../../../data/file.dat");
     ofstream title;
-    title.open("../../../data/title.txt");
+    title.open("../../../data/title.dat");
     ofstream authors;
-    authors.open("../../../data/authors.txt");
+    authors.open("../../../data/authors.dat");
     ofstream abstract;
-    abstract.open("../../../data/abstract.txt");
+    abstract.open("../../../data/abstract.dat");
     ofstream tag;
-    tag.open("../../../data/tag.txt");
+    tag.open("../../../data/tag.dat");
     ofstream year;
-    year.open("../../../data/year.txt");
+    year.open("../../../data/year.dat");
     ofstream keywords;
-    keywords.open("../../../data/keywords.txt");
+    keywords.open("../../../data/keywords.dat");
     ofstream conference;
-    conference.open("../../../data/conferences.txt");
+    conference.open("../../../data/conferences.dat");
     ofstream DOI;
-    DOI.open("../../../data/DOI.txt");
+    DOI.open("../../../data/DOI.dat");
 
     for (int i = 0; i < (int)txtList.size(); i++) {
         file << txtList.at(i) << endl;
@@ -85,26 +85,27 @@ void saveToFile(vector<paper>* papersList, vector<string> txtList) {
 }
 
 vector<string> readFromFile(vector<paper> *papersList) {
+    // read the papers' info from the file in data folder
     ifstream file;
-    file.open("../../../data/file.txt");
+    file.open("../../../data/file.dat");
     vector<string> txtList;
     if(file) {
         ifstream title;
-        title.open("../../../data/title.txt");
+        title.open("../../../data/title.dat");
         ifstream authors;
-        authors.open("../../../data/authors.txt");
+        authors.open("../../../data/authors.dat");
         ifstream abstract;
-        abstract.open("../../../data/abstract.txt");
+        abstract.open("../../../data/abstract.dat");
         ifstream tag;
-        tag.open("../../../data/tag.txt");
+        tag.open("../../../data/tag.dat");
         ifstream year;
-        year.open("../../../data/year.txt");
+        year.open("../../../data/year.dat");
         ifstream keywords;
-        keywords.open("../../../data/keywords.txt");
+        keywords.open("../../../data/keywords.dat");
         ifstream conference;
-        conference.open("../../../data/conferences.txt");
+        conference.open("../../../data/conferences.dat");
         ifstream DOI;
-        DOI.open("../../../data/DOI.txt");
+        DOI.open("../../../data/DOI.dat");
 
         string fileLine;
         string titleLine;

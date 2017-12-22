@@ -22,7 +22,8 @@ vector<vector<string> > *readStrings(const vector<string> txtList);
 vector<vector<string>>* clean(vector<vector<string>>* data);
 
 
-vector<string> traversePDF() { // find all PDF and convert
+vector<string> traversePDF() {
+    // find all PDF and convert
     vector<string> txtList; // storage the name of all pdf
     struct dirent *ptr;
     DIR *dir;
@@ -45,18 +46,19 @@ vector<string> traversePDF() { // find all PDF and convert
     }
     closedir(dir);
     return txtList;
-    // TODO: 判断txt是否存在，是则不convert
 }
 
 
-void PDFtoTxt(string const pdf) { // convert PDF to txt witl the same name using pdftotxt
+void PDFtoTxt(string const pdf) {
+    // convert PDF to txt witl the same name using pdftotxt
     //string command = "./pdftotext -nodiag " + pdf;
     string command = "../../../pdftotext -nodiag ../../../pdf/" + pdf; // due to Qt GUI will change the working path
     system(command.data());
 }
 
 
-vector<vector<string>>* readStrings(vector<string> const txtList) { // read the strings from txt into the program
+vector<vector<string>>* readStrings(vector<string> const txtList) {
+    // read the strings from txt into the program
     vector<vector<string>> *data = new vector<vector<string>>;
     string line;
     ifstream infile;

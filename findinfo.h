@@ -27,6 +27,7 @@ void findKeywords(const string line, struct paper &newPaper);
 
 
 vector<struct paper>* findInfo(vector<vector<string>>* data) {
+    // used when click import button to find infomation for papers
     vector<struct paper> *papersList = new vector<struct paper>;
     bool nextLine = false;
     vector<string> stringFindAuthor;
@@ -184,6 +185,7 @@ void findDOI(string const line, string &doi) {
 
 
 void findAbstrct(struct paper &newPaper, int const lineIndex, string const line, bool &nextLine) {
+    // find the abstract
     string simpleLine = toLower(removeSymbol(line));
     string noSpaceLine = removeSpace(line);
 
