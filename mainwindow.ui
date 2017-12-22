@@ -201,19 +201,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="feedbackLabel">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>40</y>
-      <width>101</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -260,7 +247,6 @@
    <zorder>layoutWidget</zorder>
    <zorder>mainText</zorder>
    <zorder>listWidget</zorder>
-   <zorder>feedbackLabel</zorder>
    <zorder>findButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -269,7 +255,7 @@
      <x>0</x>
      <y>0</y>
      <width>1006</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

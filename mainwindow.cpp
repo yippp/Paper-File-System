@@ -10,8 +10,10 @@
 #include <sys/types.h>
 #include "QDialog"
 #include <QLineEdit>
+#include <QFileDialog>
 #include "QMessageBox"
-
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->abstractText, SIGNAL(textChanged()), SLOT(writeBackAbstract()));
     connect(ui->tagText, SIGNAL(textChanged()), SLOT(writeBackTag()));
     connect(ui->authorText, SIGNAL(textChanged()), SLOT(writeBackAuthors()));
-    connect(ui->exportButton,SIGNAL(clicked()), SLOT(setText()));
 
     //Creation and layout of the findDialog Window.
     findDlg = new QDialog(this);
@@ -38,19 +39,17 @@ MainWindow::MainWindow(QWidget *parent) :
     findLayout->addWidget(findNextBtn);
     connect(findNextBtn, &QPushButton::clicked, this, &MainWindow::showFindText);
 
-
-
     setWindowTitle(tr("Page File System"));
 
     // create the pdf folder
     int cratePath = mkdir("../../../pdf/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
-        perror("create pdf folder failed");
+        //perror("create pdf folder failed");
     }
     // create the temp folder
     cratePath = mkdir("../../../temp/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
-        perror("create temp folder failed");
+        //perror("create temp folder failed");
     }
 
 
@@ -73,15 +72,6 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::setText(){
-    QString Success = "SUCCESS!";
-    ui->feedbackLabel->setText(Success);
-//    QTime dieTime = QTime::currentTime().addMSecs(msec);
-//    while( QTime::currentTime() < dieTime )
-//    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-//    ui->feedbackLabel->setText("");
-
-}
 
 void MainWindow::writeBackTitle(){
     if (isSelect) {
@@ -188,8 +178,35 @@ void MainWindow::on_importButton_clicked()
 
 void MainWindow::on_exportButton_clicked()
 {
-    exportBibTeX(papersList);
+    //exportBibTeX(papersList);
+    saveAs();
 }
+
+bool MainWindow::saveAs()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as"), tr("BibTeX.txt"));
+    if (fileName.isEmpty()) return false;
+    return saveFile(fileName);
+}
+
+bool MainWindow::saveFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("Page File System"),
+                             tr("Cannot save file %1：/n %2")
+                             .arg(fileName).arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream in(&file); // 新建文本流对象
+    QString txt = QString::fromStdString(exportBibTeX(papersList));
+    in << txt;
+    file.close();
+    return true;
+}
+
+
 
 void MainWindow::on_findButton_clicked()
 {

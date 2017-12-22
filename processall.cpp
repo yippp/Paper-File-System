@@ -39,7 +39,7 @@ void saveToFile(vector<paper>* papersList, vector<string> txtList) {
     // create the data folder
     int cratePath = mkdir("../../../data/", S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
     if (cratePath) {
-        perror("create data folder failed");
+        //perror("create data folder failed");
     }
 
     ofstream file;

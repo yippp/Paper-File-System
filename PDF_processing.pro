@@ -41,7 +41,6 @@ HEADERS += \
     txt.h \
     findinfo.h \
     mainwindow.h \
-    listitem.h \
     processall.h \
     export.h
 
