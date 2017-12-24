@@ -70,3 +70,4 @@
 
 # End of https://www.gitignore.io/api/qtcreator
 *.user
+.DS_Store
